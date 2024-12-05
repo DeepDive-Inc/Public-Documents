@@ -1,0 +1,27 @@
+<nav TopNav class="uk-flex uk-flex-between uk-flex-middle uk-padding-small uk-background-dafault radius-bottom uk-box-shadow-small bg-base" uk-sticky>
+  <div class="uk-flex uk-flex-middle">
+    <sync-view class="uk-margin-small-right" from="window.values.Organization" to="this.innerText"></sync-view>
+    <span class="uk-margin-small-right">-</span>
+    <sync-view from="window.values.AppName" to="this.innerText"></sync-view>
+    <span>/</span>
+    <sync-view from="window.values.Version" to="this.innerText"></sync-view>
+  </div>
+  <div class="uk-flex uk-flex-middle">
+    <div class="uk-margin-small-right">
+      <show-when target="html.attributes.theme.value" regex="Light" in="loll.300" out="roll.300">
+        <set-value-on-click value="Dark" target="html.attributes.theme.value">
+          <button class="uk-icon-button" uk-icon uk-tooltip="Switch Dark Theme">
+            <i class="fa-regular fa-moon c-blue"></i>
+          </button>
+        </set-value-on-click>
+      </show-when>
+      <show-when target="html.attributes.theme.value" regex="Dark" in="roll.300" out="loll.300">
+        <set-value-on-click value="Light" target="html.attributes.theme.value">
+          <button class="uk-icon-button" uk-icon uk-tooltip="Switch Light Theme">
+            <i class="fa-regular fa-sun c-orange"></i>
+          </button>
+        </set-value-on-click>
+      </show-when>
+    </div>
+  </div>
+</nav>
