@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html class="bg-muted" theme="Light">
+<script>
+  if (localStorage.theme) {
+    document.querySelector("html").attributes.theme.value = localStorage.theme;
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.querySelector("html").attributes.theme.value = "Dark";
+  } else {
+    document.querySelector("html").attributes.theme.value = "Light";
+    localStorage.theme = "Light";
+  }
+</script>
+
+<head>
+  <title>PublicDocument | DeepDive, Inc.</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/viewer/modules/uikit/css/uikit.min.css" />
+  <script src="/viewer/modules/uikit/js/uikit.min.js" defer></script>
+  <script src="/viewer/modules/uikit/js/uikit-icons.min.js" defer></script>
+
+  <link href="/viewer/modules/fontawesome/css/fontawesome.css" rel="stylesheet" />
+  <link href="/viewer/modules/fontawesome/css/solid.min.css" rel="stylesheet" />
+  <link href="/viewer/modules/fontawesome/css/regular.min.css" rel="stylesheet" />
+  <link href="/viewer/modules/fontawesome/css/brands.min.css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/viewer/css/common.css" />
+  <link rel="stylesheet" href="/viewer/css/modern-ui.css" />
+
+  <script src="/viewer/js/values.js" type="module"></script>
+  <script src="/viewer/js/customElements.js" type="module"></script>
+  <script src="/viewer/js/mark-down.js" type="module"></script>
+  <script src="/viewer/js/index.js" type="module"></script>
+
+</head>
+
+<body>
+  <div Controller hidden>
+    <sync-view from="html.attributes.theme.value" to="window.localStorage.theme" events='["change"]'></sync-view>
+  </div>
+  <div>
+    <div id="Panel" panel="Viewer">
+      <show-when class="bg-base" target="#Panel.attributes.panel.value" regex="Spinner" events='["sync"]' in="fade.300" out="fade.300">
+        <gate src="./spinner.html"></gate>
+      </show-when>
+      <show-when class="bg-base" target="#Panel.attributes.panel.value" regex="Viewer" events='["sync"]' in="fade.300" out="fade.300">
+        <gate src="top-nav.html"></gate>
+        <gate src="./viewer.html"></gate>
+        <gate src="./footer.html"></gate>
+      </show-when>
+    </div>
+  </div>
+</body>
+
+</html>
